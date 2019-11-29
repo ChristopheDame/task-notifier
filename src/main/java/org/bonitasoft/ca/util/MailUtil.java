@@ -36,6 +36,10 @@ public class MailUtil {
 			this.mailVar = mailVar;
 		}
 		public void run() {
+			if (IdemPotenceUtil.isSent(mailVar.getTaskId(), recipient, mailType)) {
+				return;
+			}
+			IdemPotenceUtil.setSended(mailVar.getTaskId(), recipient, mailType);
 			try {
 				Properties prop = System.getProperties();
 				prop.put("mail.transport.protocol", "smtp");

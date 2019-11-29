@@ -45,6 +45,7 @@ dependencies {
     //sending mails
 	compile "com.sun.mail:javax.mail:1.6.2"
 	compile "org.apache.velocity:velocity:1.7"
+    compile "com.google.guava:guava:25.0-jre"
 
 	
 	testImplementation "org.springframework.boot:spring-boot-starter-test"
