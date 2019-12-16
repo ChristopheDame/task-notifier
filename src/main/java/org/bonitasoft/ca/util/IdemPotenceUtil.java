@@ -30,13 +30,13 @@ public class IdemPotenceUtil {
 	
 	public static synchronized boolean isSent(Long taskId, String mail, MailType mailType) {
 		Map<String, List<MailType>> taskMailType = normalizedObjectCache.getIfPresent(taskId);
-		if (taskMailType==null) {
-			return false;
+		boolean result = false;
+		if (taskMailType!=null && taskMailType.get(mail)!=null) {
+			result = taskMailType.get(mail).contains(mailType);
 		}
-		if (taskMailType.get(mail)==null) {
-			return false;
-		}
-		return taskMailType.get(mail).contains(mailType);
+		
+		setSended(taskId, mail, mailType);
+		return result;
 	}
 	
 }
